@@ -8,6 +8,7 @@ const machineSchema = new mongoose.Schema({
   modelIdentifier: {
     type: String,
     required: true,
+    unique: true
   },
   ratedCapacity: {
     type: Number,

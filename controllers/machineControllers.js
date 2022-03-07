@@ -26,7 +26,7 @@ const getMachine = async (req, res) => {
 
 const getTopMachines = async (req, res) => {
   try {
-    const topMachines = await Machine.find({}).sort({'energyConsPerCycle': -1}).limit(5);
+    const topMachines = await Machine.find({}).sort({'energyConsPerCycle': 'asc'}).limit(3);
     res.send(topMachines);
   }
   catch (e) {
