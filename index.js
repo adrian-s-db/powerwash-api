@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv').config();
 
 const express = require('express');
 const cors = require('cors');
@@ -17,7 +17,7 @@ const port = process.env.PORT || 3030;
 
 (async function bootstrap () {
   try {
-    mongoose.connect('mongodb://localhost:27017/powerwash');
+    mongoose.connect(process.env.ATLAS_MONGO_DB_URL);
     console.log('Mongoose server listening 👌');
   }
   catch (e) {
