@@ -11,8 +11,8 @@ router.get('/users/:uid', getUser);
 router.put('/users/:uid', updateUser);
 
 router.post('/machines', createMachine);
-router.get('/machines/:id', getMachine);
-router.get('/machines/top', getTopMachines);
+router.get('/machine/:id', getMachine);
+router.get('/top-machines', getTopMachines);
 
 
 // FOR DEBUGGING

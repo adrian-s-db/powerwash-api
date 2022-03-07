@@ -15,7 +15,7 @@ const createMachine = async (req, res) => {
 
 const getMachine = async (req, res) => {
   try {
-    const machine = await Machine.findOneById(req.params.id);
+    const machine = await Machine.findById(req.params.id);
     res.send(machine);
   }
   catch (e) {
@@ -23,6 +23,18 @@ const getMachine = async (req, res) => {
     console.error(e);
   }
 };
+
+const getTopMachines = async (req, res) => {
+  try {
+    const topMachines = await Machine.find({}).sort({'energyConsPerCycle': -1}).limit(5);
+    res.send(topMachines);
+  }
+  catch (e) {
+    res.status(500);
+    console.error(e);
+  }
+};
+
 
 const deleteAllMachines = async (req, res) => {
   try {
@@ -45,17 +57,5 @@ const getAllMachines = async (req, res) => {
     console.error(e);
   }
 };
-
-const getTopMachines = async (req, res) => {
-  try {
-    const topMachines = await Machine.find({}).sort({'energyConsPerCycle': -1}).limit(5);
-    res.send(topMachines);
-  }
-  catch (e) {
-    res.status(500);
-    console.error(e);
-  }
-};
-
 
 module.exports = { getMachine, createMachine, getAllMachines, getTopMachines, deleteAllMachines };
