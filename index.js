@@ -17,7 +17,7 @@ const port = process.env.PORT || 3030;
 
 (async function bootstrap () {
   try {
-    mongoose.connect('mongodb://localhost:27017/events');
+    mongoose.connect('mongodb://localhost:27017/powerwash');
     console.log('Mongoose server listening 👌');
   }
   catch (e) {
