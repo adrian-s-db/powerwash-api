@@ -15,7 +15,7 @@ const createMachine = async (req, res) => {
 
 const getMachine = async (req, res) => {
   try {
-    const machine = await Machine.findOneById(req.params.uid);
+    const machine = await Machine.findOneById(req.params.id);
     res.send(machine);
   }
   catch (e) {
