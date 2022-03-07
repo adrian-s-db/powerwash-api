@@ -1,7 +1,8 @@
-const Machine = require('../models/user');
+const Machine = require('../models/machine');
 
 const createMachine = async (req, res) => {
   try {
+    console.log(req.body)
     const newMachine = await Machine.create(req.body);
     res.status(201);
     res.send(newMachine);
