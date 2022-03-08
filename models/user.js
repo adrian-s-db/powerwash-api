@@ -11,10 +11,13 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true
   },
-  machineIds: {
+  savedMachines: {
     type: [String],
     required: true,
     default: []
+  },
+  starredMachine: {
+    type: String,
   }
 });
 
