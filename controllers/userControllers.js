@@ -30,8 +30,8 @@ const updateUser = async (req, res) => {
         req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
-    const user = User.findById(req.body.user._id);
-
+    // const user = User.findById(req.body.user._id);
+    const user = User.find();
     console.log(user);
     // user.savedMachines = updatedMachinesArr;
     // const updatedUser = await user.save();
