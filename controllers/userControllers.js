@@ -38,7 +38,7 @@ const updateUser = async (req, res) => {
     // const updatedUser = await user.save();
 
     // res.send(updatedUser);
-
+    res.end();
   }
   catch (e) {
     res.status(500);
