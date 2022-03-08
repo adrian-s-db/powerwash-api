@@ -11,16 +11,6 @@ const createMachine = async (req, res) => {
       res.status(201);
       res.send(newMachine);
     }
-
-    // create(req.body, function (err, newMachine) {
-    //   if (err) {
-    //     console.error(err);
-    //     res.send({});
-    //   } else {
-    //     res.status(201);
-    //     res.send(newMachine);
-    //   }
-    // })
   }
   catch (e) {
     res.status(500);
