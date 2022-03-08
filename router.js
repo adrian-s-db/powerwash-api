@@ -5,13 +5,13 @@ const { getMachine, createMachine, getAllMachines, getTopMachines, deleteAllMach
 
 const router = Router();
 
-router.post('/user', createUser);
+router.post('/users', createUser);
 router.get('/users/:uid', getUser);
 // TODO: Update users
 router.put('/users/:uid', updateUser);
 
 router.post('/machines', createMachine);
-router.get('/machine/:id', getMachine);
+router.get('/machines/:id', getMachine);
 router.get('/top-machines', getTopMachines);
 
 
