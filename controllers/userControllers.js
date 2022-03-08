@@ -30,10 +30,9 @@ const updateUser = async (req, res) => {
         req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
-    const updatedUser = await User.findById(req.body.user._id, function (err, user) {
-      user.savedMachines = updatedMachinesArr;
-      user.save();
-    });
+    const updatedUser = await User.findById(req.body.user._id).exec()
+    updatedUser.savedMachines = updatedMachinesArr;
+    updatedUser.save();
 
     res.send(updatedUser);
   }
