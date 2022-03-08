@@ -1,4 +1,3 @@
-const { cornsilk } = require('color-name');
 const User = require('../models/user');
 
 const createUser = async (req, res) => {
@@ -24,9 +23,8 @@ const getUser = async (req, res) => {
   }
 };
 
-const saveMachineToUser = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
-    console.log('hello from save machine to user');
     const updatedMachinesArr =
       req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
         req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
@@ -35,6 +33,7 @@ const saveMachineToUser = async (req, res) => {
     const updatedUser = await User.findById(req.body.user._id).exec()
     updatedUser.savedMachines = updatedMachinesArr;
     updatedUser.save();
+
 
     res.send(updatedUser);
   }
@@ -67,4 +66,4 @@ const getAllUsers = async (req, res) => {
 };
 
 
-module.exports = { getUser, createUser, saveMachineToUser, getAllUsers, deleteAllUsers };
+module.exports = { getUser, createUser, updateUser, getAllUsers, deleteAllUsers };
