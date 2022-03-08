@@ -27,6 +27,7 @@ const updateUser = async (req, res) => {
   try {
     console.log('updating user with uid: ', req.params.uid)
     console.log('user data: ',req.body.user);
+    console.log('user storedmachines: ',req.body.user.savedMachines);
     console.log('machine data: ',req.body.machine);
     res.send(req.body);
     // const user = await User.findById(req.params.id);
