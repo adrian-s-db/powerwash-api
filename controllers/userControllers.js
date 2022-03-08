@@ -1,3 +1,4 @@
+const { cornsilk } = require('color-name');
 const User = require('../models/user');
 
 const createUser = async (req, res) => {
@@ -25,6 +26,7 @@ const getUser = async (req, res) => {
 
 const saveMachineToUser = async (req, res) => {
   try {
+    console.log('hello from save machine to user');
     const updatedMachinesArr =
       req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
         req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
