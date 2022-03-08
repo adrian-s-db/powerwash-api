@@ -23,7 +23,7 @@ const getUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+const saveMachineToUser = async (req, res) => {
   try {
     const updatedMachinesArr =
       req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
@@ -65,4 +65,4 @@ const getAllUsers = async (req, res) => {
 };
 
 
-module.exports = { getUser, createUser, updateUser, getAllUsers, deleteAllUsers };
+module.exports = { getUser, createUser, saveMachineToUser, getAllUsers, deleteAllUsers };
