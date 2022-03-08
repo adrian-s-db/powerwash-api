@@ -2,15 +2,25 @@ const Machine = require('../models/machine');
 
 const createMachine = async (req, res) => {
   try {
-    Machine.create(req.body, function (err, newMachine) {
-      if (err) {
-        console.error(err);
-        res.end({});
-      } else {
-        res.status(201);
-        res.send(newMachine);
-      }
-    })
+    const inDB = await Machine.findOne({modelIdentifier: req.body.modelIdentifier});
+    if (inDB){
+      res.status(200);
+      res.send(inDB);
+    } else {
+      const newMachine = await Machine.create(req.body);
+      res.status(201);
+      res.send(newMachine);
+    }
+
+    // create(req.body, function (err, newMachine) {
+    //   if (err) {
+    //     console.error(err);
+    //     res.send({});
+    //   } else {
+    //     res.status(201);
+    //     res.send(newMachine);
+    //   }
+    // })
   }
   catch (e) {
     res.status(500);
