@@ -31,7 +31,7 @@ const updateUser = async (req, res) => {
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
     const updatedUser = req.body.user;
-    updateUser.savedMachines = updatedMachinesArr;
+    updatedUser.savedMachines = updatedMachinesArr;
 
     //console.log('updating user with uid: ', req.params.uid)
     //console.log('user data: ',req.body.user);
