@@ -25,11 +25,17 @@ const getUser = async (req, res) => {
 
 const updateUser = async (req, res) => {
   try {
-    console.log('updating user with uid: ', req.params.uid)
-    console.log('user data: ',req.body.user);
-    console.log('user storedmachines: ',req.body.user.savedMachines);
-    console.log('machine data: ',req.body.machine);
-    res.send(req.body);
+    const updatedMachinesArr =
+      req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
+        req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
+        req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
+
+
+    //console.log('updating user with uid: ', req.params.uid)
+    //console.log('user data: ',req.body.user);
+    //console.log('user storedmachines: ',req.body.user.savedMachines);
+    //console.log('machine data: ',req.body.machine);
+    res.send(updatedMachinesArr);
     // const user = await User.findById(req.params.id);
     // res.send(user);
   }
