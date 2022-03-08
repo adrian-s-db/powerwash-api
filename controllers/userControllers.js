@@ -30,16 +30,12 @@ const updateUser = async (req, res) => {
         req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
-    const updatedUser = req.body.user;
-    updatedUser.savedMachines = updatedMachinesArr;
+    const user = User.findById(req.body.user.id);
+    user.savedMachines = updatedMachinesArr;
+    const updatedUser = await user.save();
 
-    //console.log('updating user with uid: ', req.params.uid)
-    //console.log('user data: ',req.body.user);
-    //console.log('user storedmachines: ',req.body.user.savedMachines);
-    //console.log('machine data: ',req.body.machine);
     res.send(updatedUser);
-    // const user = await User.findById(req.params.id);
-    // res.send(user);
+    
   }
   catch (e) {
     res.status(500);
