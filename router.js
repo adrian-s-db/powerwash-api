@@ -7,7 +7,6 @@ const router = Router();
 
 router.post('/users', createUser);
 router.get('/users/:uid', getUser);
-// TODO: Update users
 router.put('/users/:uid', updateUser);
 
 router.post('/machines', createMachine);

@@ -20,7 +20,7 @@ const createMachine = async (req, res) => {
 
 const getMachine = async (req, res) => {
   try {
-    const machine = await Machine.findById(req.params.id);
+    const machine = await Machine.findOne({"modelIdentifier":req.params.id});
     res.send(machine);
   }
   catch (e) {
