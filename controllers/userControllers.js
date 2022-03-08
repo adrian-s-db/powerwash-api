@@ -31,11 +31,13 @@ const updateUser = async (req, res) => {
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
     const user = User.findById(req.body.user.id);
-    user.savedMachines = updatedMachinesArr;
-    const updatedUser = await user.save();
 
-    res.send(updatedUser);
-    
+    console.log(user);
+    // user.savedMachines = updatedMachinesArr;
+    // const updatedUser = await user.save();
+
+    // res.send(updatedUser);
+
   }
   catch (e) {
     res.status(500);
