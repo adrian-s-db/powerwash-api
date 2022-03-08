@@ -5,7 +5,7 @@ const createMachine = async (req, res) => {
     Machine.create(req.body, function (err, newMachine) {
       if (err) {
         console.error(err);
-        res.end();
+        res.end({});
       } else {
         res.status(201);
         res.send(newMachine);
