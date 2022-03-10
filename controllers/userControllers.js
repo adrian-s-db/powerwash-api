@@ -14,7 +14,8 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res) => {
   try {
-    const user = await User.findOne({uid:req.params.uid});
+    const { uid } = req.params;
+    const user = await User.findOne({uid});
     res.send(user);
   }
   catch (e) {

@@ -17,13 +17,13 @@ const port = process.env.PORT || 3030;
 
 (async function bootstrap () {
   try {
-    mongoose.connect(process.env.ATLAS_MONGO_DB_URL);
+    await mongoose.connect(process.env.ATLAS_MONGO_DB_URL);
     console.log('Mongoose server listening 👌');
   }
   catch (e) {
     console.error(e);
   }
-  App.listen(port, () => console.log('Express server listening 🚀'));
+  App.listen(port, '192.168.1.162', () => console.log('Express server listening 🚀'));
 })();
 
 module.exports = {App};
