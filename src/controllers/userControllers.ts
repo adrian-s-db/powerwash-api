@@ -1,6 +1,7 @@
-const User = require('../models/user');
+import Express from 'express';
+import User from '../models/user';
 
-const createUser = async (req, res) => {
+const createUser = async (req: Express.Request, res: Express.Response) => {
   try {
     const newUser = await User.create(req.body);
     res.status(201);
@@ -12,7 +13,7 @@ const createUser = async (req, res) => {
   }
 };
 
-const getUser = async (req, res) => {
+const getUser = async (req: Express.Request, res: Express.Response) => {
   try {
     const { uid } = req.params;
     const user = await User.findOne({uid});
@@ -24,11 +25,11 @@ const getUser = async (req, res) => {
   }
 };
 
-const updateUser = async (req, res) => {
+const updateUser = async (req: Express.Request, res: Express.Response) => {
   try {
     const updatedMachinesArr =
       req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
-        req.body.user.savedMachines.filter((id) => id !== req.body.machine.washingMachineCode) :
+        req.body.user.savedMachines.filter((id: string) => id !== req.body.machine.washingMachineCode) :
         req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
 
     const updatedUser = await User.findById(req.body.user._id).exec()
@@ -44,7 +45,7 @@ const updateUser = async (req, res) => {
   }
 };
 
-const deleteAllUsers = async (req, res) => {
+const deleteAllUsers = async (_req: Express.Request, res: Express.Response) => {
   try {
     const deleted = await User.deleteMany({});
     res.send(deleted);
@@ -55,7 +56,7 @@ const deleteAllUsers = async (req, res) => {
   }
 }
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (_req: Express.Request, res: Express.Response) => {
   try {
     const users = await User.find({});
     res.send(users);
@@ -67,4 +68,4 @@ const getAllUsers = async (req, res) => {
 };
 
 
-module.exports = { getUser, createUser, updateUser, getAllUsers, deleteAllUsers };
+export { getUser, createUser, updateUser, getAllUsers, deleteAllUsers };
