@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,15 +35,19 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
-var User = require('../models/user');
-var createUser = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteAllUsers = exports.getAllUsers = exports.updateUser = exports.createUser = exports.getUser = void 0;
+var user_1 = __importDefault(require("../models/user"));
+var createUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var newUser, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, User.create(req.body)];
+                return [4 /*yield*/, user_1.default.create(req.body)];
             case 1:
                 newUser = _a.sent();
                 res.status(201);
@@ -57,14 +62,15 @@ var createUser = function (req, res) { return __awaiter(_this, void 0, void 0, f
         }
     });
 }); };
-var getUser = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.createUser = createUser;
+var getUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var uid, user, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
                 uid = req.params.uid;
-                return [4 /*yield*/, User.findOne({ uid: uid })];
+                return [4 /*yield*/, user_1.default.findOne({ uid: uid })];
             case 1:
                 user = _a.sent();
                 res.send(user);
@@ -78,7 +84,8 @@ var getUser = function (req, res) { return __awaiter(_this, void 0, void 0, func
         }
     });
 }); };
-var updateUser = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.getUser = getUser;
+var updateUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var updatedMachinesArr, updatedUser, e_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
@@ -87,7 +94,7 @@ var updateUser = function (req, res) { return __awaiter(_this, void 0, void 0, f
                 updatedMachinesArr = req.body.user.savedMachines.includes(req.body.machine.washingMachineCode) ?
                     req.body.user.savedMachines.filter(function (id) { return id !== req.body.machine.washingMachineCode; }) :
                     req.body.user.savedMachines.concat(req.body.machine.washingMachineCode);
-                return [4 /*yield*/, User.findById(req.body.user._id).exec()];
+                return [4 /*yield*/, user_1.default.findById(req.body.user._id).exec()];
             case 1:
                 updatedUser = _a.sent();
                 updatedUser.savedMachines = updatedMachinesArr;
@@ -103,13 +110,14 @@ var updateUser = function (req, res) { return __awaiter(_this, void 0, void 0, f
         }
     });
 }); };
-var deleteAllUsers = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.updateUser = updateUser;
+var deleteAllUsers = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var deleted, e_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, User.deleteMany({})];
+                return [4 /*yield*/, user_1.default.deleteMany({})];
             case 1:
                 deleted = _a.sent();
                 res.send(deleted);
@@ -123,15 +131,17 @@ var deleteAllUsers = function (req, res) { return __awaiter(_this, void 0, void 
         }
     });
 }); };
-var getAllUsers = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.deleteAllUsers = deleteAllUsers;
+var getAllUsers = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var users, e_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, User.find({})];
+                return [4 /*yield*/, user_1.default.find({})];
             case 1:
                 users = _a.sent();
+                res.status(200);
                 res.send(users);
                 return [3 /*break*/, 3];
             case 2:
@@ -143,4 +153,4 @@ var getAllUsers = function (req, res) { return __awaiter(_this, void 0, void 0, 
         }
     });
 }); };
-module.exports = { getUser: getUser, createUser: createUser, updateUser: updateUser, getAllUsers: getAllUsers, deleteAllUsers: deleteAllUsers };
+exports.getAllUsers = getAllUsers;

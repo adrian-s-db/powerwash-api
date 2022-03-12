@@ -59,6 +59,7 @@ const deleteAllUsers = async (_req: Express.Request, res: Express.Response) => {
 const getAllUsers = async (_req: Express.Request, res: Express.Response) => {
   try {
     const users = await User.find({});
+    res.status(200);
     res.send(users);
   }
   catch (e) {

@@ -24,4 +24,4 @@ router.get('/machines', getAllMachines);
 router.delete('/machines', deleteAllMachines);
 
 
-module.exports = router;
+export = router;

@@ -1,16 +1,18 @@
-var Router = require('express').Router;
-var _a = require('./controllers/userControllers'), getUser = _a.getUser, createUser = _a.createUser, updateUser = _a.updateUser, getAllUsers = _a.getAllUsers, deleteAllUsers = _a.deleteAllUsers;
-var _b = require('./controllers/machineControllers'), getMachine = _b.getMachine, createMachine = _b.createMachine, getAllMachines = _b.getAllMachines, getTopMachines = _b.getTopMachines, deleteAllMachines = _b.deleteAllMachines;
-var router = Router();
-router.post('/users', createUser);
-router.get('/users/:uid', getUser);
-router.put('/users/:uid', updateUser);
-router.post('/machines', createMachine);
-router.get('/machines/:id', getMachine);
-router.get('/top-machines', getTopMachines);
+"use strict";
+var express_1 = require("express");
+var userControllers_1 = require("./controllers/userControllers");
+// Should not be showing an error as soon as the machineController.js file is refactored.
+var machineControllers_1 = require("./controllers/machineControllers");
+var router = (0, express_1.Router)();
+router.post('/users', userControllers_1.createUser);
+router.get('/users/:uid', userControllers_1.getUser);
+router.put('/users/:uid', userControllers_1.updateUser);
+router.post('/machines', machineControllers_1.createMachine);
+router.get('/machines/:id', machineControllers_1.getMachine);
+router.get('/top-machines', machineControllers_1.getTopMachines);
 // FOR DEBUGGING
-router.get('/users', getAllUsers);
-router.delete('/users', deleteAllUsers);
-router.get('/machines', getAllMachines);
-router.delete('/machines', deleteAllMachines);
+router.get('/users', userControllers_1.getAllUsers);
+router.delete('/users', userControllers_1.deleteAllUsers);
+router.get('/machines', machineControllers_1.getAllMachines);
+router.delete('/machines', machineControllers_1.deleteAllMachines);
 module.exports = router;

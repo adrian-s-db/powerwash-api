@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,22 +35,26 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var _this = this;
-var Machine = require('../models/machine');
-var createMachine = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.deleteAllMachines = exports.getTopMachines = exports.getAllMachines = exports.createMachine = exports.getMachine = void 0;
+var machine_1 = __importDefault(require("../models/machine"));
+var createMachine = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var inDB, newMachine, e_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 5, , 6]);
-                return [4 /*yield*/, Machine.findOne({ modelIdentifier: req.body.modelIdentifier })];
+                return [4 /*yield*/, machine_1.default.findOne({ modelIdentifier: req.body.modelIdentifier })];
             case 1:
                 inDB = _a.sent();
                 if (!inDB) return [3 /*break*/, 2];
                 res.status(200);
                 res.send(inDB);
                 return [3 /*break*/, 4];
-            case 2: return [4 /*yield*/, Machine.create(req.body)];
+            case 2: return [4 /*yield*/, machine_1.default.create(req.body)];
             case 3:
                 newMachine = _a.sent();
                 res.status(201);
@@ -65,13 +70,14 @@ var createMachine = function (req, res) { return __awaiter(_this, void 0, void 0
         }
     });
 }); };
-var getMachine = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.createMachine = createMachine;
+var getMachine = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var machine, e_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Machine.findOne({ "modelIdentifier": req.params.id })];
+                return [4 /*yield*/, machine_1.default.findOne({ "modelIdentifier": req.params.id })];
             case 1:
                 machine = _a.sent();
                 res.send(machine);
@@ -85,13 +91,14 @@ var getMachine = function (req, res) { return __awaiter(_this, void 0, void 0, f
         }
     });
 }); };
-var getTopMachines = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.getMachine = getMachine;
+var getTopMachines = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var topMachines, e_3;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Machine.find({}).sort({ 'energyConsPerCycle': 'asc' }).limit(3)];
+                return [4 /*yield*/, machine_1.default.find({}).sort({ 'energyConsPerCycle': 'asc' }).limit(3)];
             case 1:
                 topMachines = _a.sent();
                 res.send(topMachines);
@@ -105,13 +112,14 @@ var getTopMachines = function (req, res) { return __awaiter(_this, void 0, void 
         }
     });
 }); };
-var deleteAllMachines = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.getTopMachines = getTopMachines;
+var deleteAllMachines = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var deleted, e_4;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Machine.deleteMany({})];
+                return [4 /*yield*/, machine_1.default.deleteMany({})];
             case 1:
                 deleted = _a.sent();
                 res.send(deleted);
@@ -125,13 +133,14 @@ var deleteAllMachines = function (req, res) { return __awaiter(_this, void 0, vo
         }
     });
 }); };
-var getAllMachines = function (req, res) { return __awaiter(_this, void 0, void 0, function () {
+exports.deleteAllMachines = deleteAllMachines;
+var getAllMachines = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var machines, e_5;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 _a.trys.push([0, 2, , 3]);
-                return [4 /*yield*/, Machine.find({})];
+                return [4 /*yield*/, machine_1.default.find({})];
             case 1:
                 machines = _a.sent();
                 res.send(machines);
@@ -145,4 +154,4 @@ var getAllMachines = function (req, res) { return __awaiter(_this, void 0, void 
         }
     });
 }); };
-module.exports = { getMachine: getMachine, createMachine: createMachine, getAllMachines: getAllMachines, getTopMachines: getTopMachines, deleteAllMachines: deleteAllMachines };
+exports.getAllMachines = getAllMachines;

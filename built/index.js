@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -34,38 +35,51 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 require('dotenv').config();
-var express = require('express');
-var cors = require('cors');
-var bodyParser = require('body-parser');
-var router = require('./router');
-var mongoose = require('mongoose');
-var App = express();
-App.use(cors());
-App.use(bodyParser.json());
-App.use(router);
-var port = process.env.PORT || 3030;
-(function bootstrap() {
+var express_1 = __importDefault(require("express"));
+var cors_1 = __importDefault(require("cors"));
+var body_parser_1 = __importDefault(require("body-parser"));
+var router_1 = __importDefault(require("./router"));
+var mongoose_1 = __importDefault(require("mongoose"));
+var _a = process.env, ATLAS_MONGO_DB_URL = _a.ATLAS_MONGO_DB_URL, ATLAS_MONGO_DB_URL_TEST = _a.ATLAS_MONGO_DB_URL_TEST, NODE_ENV = _a.NODE_ENV;
+var connectionString = NODE_ENV === 'test'
+    ? ATLAS_MONGO_DB_URL_TEST
+    : ATLAS_MONGO_DB_URL;
+var App = (0, express_1.default)();
+App.use((0, cors_1.default)());
+App.use(body_parser_1.default.json());
+App.use(router_1.default);
+var port = 3030;
+var server = (function bootstrap() {
     return __awaiter(this, void 0, void 0, function () {
-        var e_1;
+        var e_1, server;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
-                    _a.trys.push([0, 2, , 3]);
-                    return [4 /*yield*/, mongoose.connect(process.env.ATLAS_MONGO_DB_URL)];
+                    _a.trys.push([0, 4, , 5]);
+                    if (!connectionString) return [3 /*break*/, 2];
+                    return [4 /*yield*/, mongoose_1.default.connect(connectionString)];
                 case 1:
                     _a.sent();
                     console.log('Mongoose server listening 👌');
                     return [3 /*break*/, 3];
                 case 2:
+                    console.error('No Database URL provided');
+                    _a.label = 3;
+                case 3: return [3 /*break*/, 5];
+                case 4:
                     e_1 = _a.sent();
                     console.error(e_1);
-                    return [3 /*break*/, 3];
-                case 3:
-                    App.listen(port, '192.168.1.162', function () { return console.log('Express server listening 🚀'); });
-                    return [2 /*return*/];
+                    return [3 /*break*/, 5];
+                case 5: return [4 /*yield*/, App.listen(port, '192.168.1.162', function () { return console.log("Express server listening in 192.168.1.162".concat(port, " \uD83D\uDE80")); })];
+                case 6:
+                    server = _a.sent();
+                    return [2 /*return*/, server];
             }
         });
     });
 })();
-module.exports = { App: App };
+module.exports = { App: App, server: server };

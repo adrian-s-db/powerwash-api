@@ -1,6 +1,7 @@
-const Machine = require('../models/machine');
+import Express from 'express';
+import Machine from '../models/machine';
 
-const createMachine = async (req, res) => {
+const createMachine = async (req: Express.Request, res: Express.Response) => {
   try {
     const inDB = await Machine.findOne({modelIdentifier: req.body.modelIdentifier});
     if (inDB){
@@ -18,7 +19,7 @@ const createMachine = async (req, res) => {
   }
 };
 
-const getMachine = async (req, res) => {
+const getMachine = async (req: Express.Request, res: Express.Response) => {
   try {
     const machine = await Machine.findOne({"modelIdentifier":req.params.id});
     res.send(machine);
@@ -29,7 +30,7 @@ const getMachine = async (req, res) => {
   }
 };
 
-const getTopMachines = async (req, res) => {
+const getTopMachines = async (_req: Express.Request, res: Express.Response) => {
   try {
     const topMachines = await Machine.find({}).sort({'energyConsPerCycle': 'asc'}).limit(3);
     res.send(topMachines);
@@ -41,7 +42,7 @@ const getTopMachines = async (req, res) => {
 };
 
 
-const deleteAllMachines = async (req, res) => {
+const deleteAllMachines = async (_req: Express.Request, res: Express.Response) => {
   try {
     const deleted = await Machine.deleteMany({});
     res.send(deleted);
@@ -52,7 +53,7 @@ const deleteAllMachines = async (req, res) => {
   }
 }
 
-const getAllMachines = async (req, res) => {
+const getAllMachines = async (_req: Express.Request, res: Express.Response) => {
   try {
     const machines = await Machine.find({});
     res.send(machines);
@@ -63,4 +64,4 @@ const getAllMachines = async (req, res) => {
   }
 };
 
-module.exports = { getMachine, createMachine, getAllMachines, getTopMachines, deleteAllMachines };
+export { getMachine, createMachine, getAllMachines, getTopMachines, deleteAllMachines };
