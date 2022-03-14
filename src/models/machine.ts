@@ -1,4 +1,5 @@
 import mongoose = require('mongoose');
+import Machine = require('./../types/Machine')
 
 const machineSchema = new mongoose.Schema({
   energyClass: {
@@ -32,5 +33,5 @@ const machineSchema = new mongoose.Schema({
   }
 });
 
-const Machine = mongoose.model('Machine', machineSchema);
+const Machine = mongoose.model<Machine>('Machine', machineSchema);
 export = Machine;
