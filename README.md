@@ -8,7 +8,7 @@ Powerwash is a mobile app helping people make better decisions about their energ
 
 
 This repo corresponds to the REST API for the project. It can be used together with is other repo:
-* [Powerwash API](https://github.com/adrian-s-db/powerwash-client) - React Native application. 
+* [Powerwash client](https://github.com/adrian-s-db/powerwash-client) - React Native application. 
 
 ## Screenshots
 <p align="center">
